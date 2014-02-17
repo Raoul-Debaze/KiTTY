@@ -3,6 +3,7 @@
 #include "putty.h"
 
 #include <security.h>
+#include <windows.h>
 
 #include "pgssapi.h"
 #include "sshgss.h"
