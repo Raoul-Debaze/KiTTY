@@ -18,7 +18,7 @@
 					<folderInfo id="cdt.managedbuild.config.gnu.mingw.exe.debug.1585751016." name="/" resourcePath="">
 						<toolChain id="cdt.managedbuild.toolchain.gnu.mingw.exe.debug.457059682" name="MinGW GCC" nonInternalBuilderId="cdt.managedbuild.builder.gnu.cross" superClass="cdt.managedbuild.toolchain.gnu.mingw.exe.debug">
 							<targetPlatform id="cdt.managedbuild.target.gnu.platform.mingw.exe.debug.1010357561" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.mingw.exe.debug"/>
-							<builder arguments="-f 0.63_My_PuTTY/WINDOWS/MAKEFILE.MINGW" buildPath="${workspace_loc:/KiTTY}/src" command="mingw32-make" id="cdt.managedbuild.builder.gnu.cross.1810349496" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="cdt.managedbuild.builder.gnu.cross"/>
+							<builder arguments="-f MAKEFILE.MINGW" buildPath="${workspace_loc:/KiTTY}/src/0.63_My_PuTTY/WINDOWS/" command="mingw32-make" id="cdt.managedbuild.builder.gnu.cross.1810349496" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="cdt.managedbuild.builder.gnu.cross"/>
 							<tool id="cdt.managedbuild.tool.gnu.assembler.mingw.exe.debug.1780545062" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.mingw.exe.debug">
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.605448283" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
