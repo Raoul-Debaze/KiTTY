@@ -423,7 +423,7 @@ static Ssh_gss_stat ssh_sspi_get_mic(struct ssh_gss_library *lib,
     
     if (winctx->maj_stat != SEC_E_OK ||
 	ContextSizes.cbMaxSignature == 0)
-	return winctx->maj_stat;
+	return (Ssh_gss_stat)winctx->maj_stat;
 
     InputBufferDescriptor.cBuffers = 2;
     InputBufferDescriptor.pBuffers = InputSecurityToken;
@@ -445,7 +445,7 @@ static Ssh_gss_stat ssh_sspi_get_mic(struct ssh_gss_library *lib,
 	hash->value = InputSecurityToken[1].pvBuffer;
     }
 
-    return winctx->maj_stat;
+    return (Ssh_gss_stat)winctx->maj_stat;
 }
 
 static Ssh_gss_stat ssh_sspi_free_mic(struct ssh_gss_library *lib,
