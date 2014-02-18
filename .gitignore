@@ -1,6 +1,10 @@
 #Eclipse
 /Debug
 
+#gvim
+*~
+*.swp
+
 # Object files
 *.o
 *.ko
