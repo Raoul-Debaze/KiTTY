@@ -392,12 +392,12 @@ static Ssh_gss_stat ssh_sspi_display_status(struct ssh_gss_library *lib,
 	    " negotiate the proper security package.";
 	break;
       default:
-	msg = "Internal SSPI error";
+	strcpy(msg, "Internal SSPI error");
 	break;
     }
 
     buf->value = dupstr(msg);
-    buf->length = strlen(buf->value);
+    buf->length = strlen((char*)buf->value);
     
     return SSH_GSS_OK;
 }
