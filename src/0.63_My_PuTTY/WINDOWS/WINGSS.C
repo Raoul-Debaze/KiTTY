@@ -61,7 +61,7 @@ typedef struct winSsh_gss_ctx {
 } winSsh_gss_ctx;
 
 
-const Ssh_gss_buf gss_mech_krb5={9,"\x2A\x86\x48\x86\xF7\x12\x01\x02\x02"};
+const Ssh_gss_buf gss_mech_krb5={9, (void*)"\x2A\x86\x48\x86\xF7\x12\x01\x02\x02"};
 
 const char *gsslogmsg = NULL;
 
