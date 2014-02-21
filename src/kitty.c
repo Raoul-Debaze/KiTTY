@@ -1117,10 +1117,10 @@ void CountUp( void ) {
 	sprintf( pst+1, "%ld", time(0) ) ;
 	WriteParameter( INIT_SECTION, "KiLastUp", buffer) ;
 	
-	if( GetUserName( buffer, (void*)&len ) ) { 
+	if( GetUserName( buffer, (PDWORD)&len ) ) {
 		strcat( buffer, "@" ) ;
 		len = 1024 ;
-		if( GetComputerName( buffer+strlen(buffer), (void*)&len ) ) {
+		if( GetComputerName( buffer+strlen(buffer), (PDWORD)&len ) ) {
 			cryptstring( buffer, MASTER_PASSWORD ) ;
 			WriteParameter( INIT_SECTION, "KiLastUH", buffer) ;
 			}
@@ -1748,7 +1748,7 @@ void SetNewIcon( HWND hwnd, char * iconefile, int icone, const int mode ) {
 	
 	HICON hIcon = NULL ;
 	if( (strlen(iconefile)>0) && existfile(iconefile) ) { 
-		hIcon = LoadImage(NULL, iconefile, IMAGE_ICON, 32, 32, LR_LOADFROMFILE|LR_SHARED) ; 
+		hIcon = (HICON)LoadImage(NULL, iconefile, IMAGE_ICON, 32, 32, LR_LOADFROMFILE|LR_SHARED) ;
 		}
 
 	if(hIcon) {
@@ -2091,7 +2091,7 @@ void GetFile( HWND hwnd ) {
 		HGLOBAL hglb ;
 		
 		if( (hglb = GetClipboardData( CF_TEXT ) ) != NULL ) {
-			if( ( pst = GlobalLock( hglb ) ) != NULL ) {
+			if( ( pst = (char*)GlobalLock( hglb ) ) != NULL ) {
 //sprintf(buffer,"#%s#%d",pst,strlen(pst));MessageBox(hwnd,buffer,"Info",MB_OK);
 				while( (pst[strlen(pst)-1]=='\n')||(pst[strlen(pst)-1]=='\r')||(pst[strlen(pst)-1]==' ')||(pst[strlen(pst)-1]=='\t') ) pst[strlen(pst)-1]='\0' ;
 //sprintf(buffer,"#%s#%d",pst,strlen(pst));MessageBox(hwnd,buffer,"Info",MB_OK);
@@ -2200,7 +2200,7 @@ void RunCmd( HWND hwnd ) {
 		HGLOBAL hglb ;
 		
 		if( (hglb = GetClipboardData( CF_TEXT ) ) != NULL ) {
-			if( ( pst = GlobalLock( hglb ) ) != NULL ) {
+			if( ( pst = (char*)GlobalLock( hglb ) ) != NULL ) {
 				sprintf( buffer, "%s", pst ) ;
 				GlobalUnlock( hglb ) ;
 				}
@@ -2269,7 +2269,7 @@ int ManageLocalCmd( HWND hwnd, char * cmd ) {
 		}
 	else if( (cmd[0]=='i')&&(cmd[1]=='e')&&(cmd[2]==':') ) { // __ie: Lance un navigateur sur le lien
 		if( strlen(cmd+3)>0 ) {
-			urlhack_launch_url(!conf_get_int(conf,CONF_url_defbrowser)?conf_get_filename(conf,CONF_url_browser)->path:NULL, (const wchar_t *)(cmd+3));
+			urlhack_launch_url(!conf_get_int(conf,CONF_url_defbrowser)?conf_get_filename(conf,CONF_url_browser)->path:NULL, (const char *)(cmd+3));
 			return 1;
 			}
 		}
@@ -2721,7 +2721,7 @@ static LRESULT CALLBACK InputMultilineCallBack (HWND hwnd, UINT message, WPARAM 
 				free(buffer);
 				}
 			
-			FARPROC lpfnSubClassProc = MakeProcInstance( EditMultilineCallBack, hInst );
+			FARPROC lpfnSubClassProc = (FARPROC)MakeProcInstance( EditMultilineCallBack, hInst );
 			if( lpfnSubClassProc )
 				lpfnOldEditProc = (FARPROC)SetWindowLong( handle, GWL_WNDPROC, (DWORD)(FARPROC)lpfnSubClassProc );
 			}
@@ -2797,7 +2797,7 @@ char * InputBoxMultiline( HINSTANCE hInstance, HWND hwnd ) {
 		if( OpenClipboard(NULL) ) {
 			HGLOBAL hglb ;
 			if( (hglb = GetClipboardData( CF_TEXT ) ) != NULL ) {
-				if( ( pst = GlobalLock( hglb ) ) != NULL ) {
+				if( ( pst = (char*)GlobalLock( hglb ) ) != NULL ) {
 					InputBoxResult = (char*) malloc( strlen( pst ) +1 ) ;
 					strcpy( InputBoxResult, pst ) ;
 					GlobalUnlock( hglb ) ;
