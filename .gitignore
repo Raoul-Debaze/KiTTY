@@ -1,5 +1,7 @@
 #Eclipse
 /Debug
+*.map
+build.log
 
 #gvim
 *~
